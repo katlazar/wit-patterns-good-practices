@@ -1,6 +1,5 @@
 package pl.sdacademy.practice;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,13 +10,33 @@ public class MyPlayList {
     private static final String SPACE = " ";
 
     public static void main(String[] args) {
-        List<Track> items = initPlayList();
+        // klasa 1 - PlayList
+        PlayList playList = new PlayList();
+        List<Track> items = playList.getTracks();
+
+        // to chyba player? - PlayListController
+        present(items, System.out::println);
+
+        Track secondTrack = playList.getTracks().get(1);
+        System.out.println("\n ==== ZMIANA ===== \n");
+        System.out.println(secondTrack);
+        secondTrack.setArtist("Mozart");
+
+        System.out.println(secondTrack);
 
         present(items, System.out::println);
 
-        shuffle(items);
+        Track thirdTrack = Track.builder()
+                .artist("Einaudi")
+                .title("Expecience")
+                .build();
+        playList.remove(thirdTrack);
+        System.out.println("\n ==== PO KASOWANIU ===== \n");
+        present(items, System.out::println);
 
-        present(items, MyPlayList::print);
+//        shuffle(items);
+//
+//        present(items, MyPlayList::print);
 
     }
 
@@ -35,23 +54,4 @@ public class MyPlayList {
         }
     }
 
-    private static List<Track> initPlayList() {
-        List<Track> items = new ArrayList<>();
-        items.add(createTrack("Wednesday", "Paint It Black"));
-        items.add(createTrack("Lindsey Stirling", "Underground"));
-        items.add(createTrack("Einaudi", "Expecience"));
-        items.add(createTrack("Ramin Djawadi", "The Night King"));
-        items.add(createTrack("The Landing", "Justin Hurtwitz"));
-        items.add(createTrack("John Williams", "The Imperial March"));
-        items.add(createTrack("John Williams", "Duel of the Fates"));
-        items.add(createTrack("John Williams", "Battle of the Heroes"));
-        return items;
-    }
-
-    private static Track createTrack(String artist, String title) {
-        return Track.builder()
-                .artist(artist)
-                .title(title)
-                .build();
-    }
 }

@@ -1,9 +1,13 @@
 package pl.sdacademy.practice;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+@Getter
+@ToString
+@EqualsAndHashCode
 @Builder
 public class Track {
 

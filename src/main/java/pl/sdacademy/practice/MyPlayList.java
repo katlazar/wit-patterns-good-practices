@@ -17,14 +17,6 @@ public class MyPlayList {
         // to chyba player? - PlayListController
         present(items, System.out::println);
 
-        Track secondTrack = playList.getTracks().get(1);
-        System.out.println("\n ==== ZMIANA ===== \n");
-        System.out.println(secondTrack);
-        secondTrack.setArtist("Mozart");
-
-        System.out.println(secondTrack);
-
-        present(items, System.out::println);
 
         Track thirdTrack = Track.builder()
                 .artist("Einaudi")

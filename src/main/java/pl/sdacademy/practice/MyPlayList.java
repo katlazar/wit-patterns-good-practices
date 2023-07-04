@@ -1,32 +1,28 @@
 package pl.sdacademy.practice;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class MyPlayList {
 
     public static void main(String[] args) {
-        Track[] items = new Track[7];
-        items[0] = createTrack("Wednesday", "Paint It Black");
-        items[1] = createTrack("Lindsey Stirling", "Underground");
-        items[2] = createTrack("Einaudi", "Expecience");
-        items[3] = createTrack( "Ramin Djawadi", "The Night King");
-        items[4] = createTrack( "The Landing", "Justin Hurtwitz");
-        items[5] = createTrack( "John Williams", "The Imperial March");
-        items[6] = createTrack( "John Williams", "Duel of the Fates");
-//        items[7] = createTrack( "John Williams", "Battle of the Heroes");
+        List<Track> items = new ArrayList<>();
+        items.add(createTrack("Wednesday", "Paint It Black"));
+        items.add(createTrack("Lindsey Stirling", "Underground"));
+        items.add(createTrack("Einaudi", "Expecience"));
+        items.add(createTrack( "Ramin Djawadi", "The Night King"));
+        items.add(createTrack( "The Landing", "Justin Hurtwitz"));
+        items.add(createTrack( "John Williams", "The Imperial March"));
+        items.add(createTrack( "John Williams", "Duel of the Fates"));
+        items.add(createTrack( "John Williams", "Battle of the Heroes"));
 
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i].getArtist()+" "+items[i].getTitle());
+        for (Track track:  items) {
+            System.out.println(track.getArtist()+" "+track.getTitle());
         }
 
-        Arrays.sort(items, Comparator.nullsLast(Comparator.comparing(Track::getArtist)));
+        Collections.sort(items, Comparator.nullsLast(Comparator.comparing(Track::getArtist)));
 
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] == null) {
-                continue;
-            }
-            System.out.println(items[i].getArtist()+" "+items[i].getTitle());
+        for (Track track:  items) {
+            System.out.println(track.getArtist()+" "+track.getTitle());
         }
 
     }

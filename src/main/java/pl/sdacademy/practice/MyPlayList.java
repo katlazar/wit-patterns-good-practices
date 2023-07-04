@@ -13,12 +13,16 @@ public class MyPlayList {
     public static void main(String[] args) {
         List<Track> items = initPlayList();
 
-        present(items, track -> System.out.println(track));
+        present(items, System.out::println);
 
         shuffle(items);
 
-        present(items, track -> System.out.println(track.getArtist() + SPACE + track.getTitle()));
+        present(items, MyPlayList::print);
 
+    }
+
+    private static void print(Track track) {
+        System.out.println(track.getArtist() + SPACE + track.getTitle());
     }
 
     private static void shuffle(List<Track> items) {

@@ -1,10 +1,37 @@
 package pl.sdacademy.practice;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class MyPlayList {
 
+    private static final String SPACE = " ";
+
     public static void main(String[] args) {
+        List<Track> items = initPlayList();
+
+        present(items, track -> System.out.println(track));
+
+        shuffle(items);
+
+        present(items, track -> System.out.println(track.getArtist() + SPACE + track.getTitle()));
+
+    }
+
+    private static void shuffle(List<Track> items) {
+        Collections.sort(items, Comparator.nullsLast(Comparator.comparing(Track::getArtist)));
+    }
+
+    private static void present(List<Track> items, Consumer<Track> printer) {
+        for (Track track : items) {
+            printer.accept(track);
+        }
+    }
+
+    private static List<Track> initPlayList() {
         List<Track> items = new ArrayList<>();
         items.add(createTrack("Wednesday", "Paint It Black"));
         items.add(createTrack("Lindsey Stirling", "Underground"));
@@ -14,17 +41,7 @@ public class MyPlayList {
         items.add(createTrack("John Williams", "The Imperial March"));
         items.add(createTrack("John Williams", "Duel of the Fates"));
         items.add(createTrack("John Williams", "Battle of the Heroes"));
-
-        for (Track track : items) {
-            System.out.println(track);
-        }
-
-        Collections.sort(items, Comparator.nullsLast(Comparator.comparing(Track::getArtist)));
-
-        for (Track track : items) {
-            System.out.println(track.getArtist() + " " + track.getTitle());
-        }
-
+        return items;
     }
 
     private static Track createTrack(String artist, String title) {

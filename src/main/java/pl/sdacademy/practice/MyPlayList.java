@@ -1,47 +1,32 @@
 package pl.sdacademy.practice;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Consumer;
+import static pl.sdacademy.practice.PresenterFactory.trackConsumerFactor;
 
 public class MyPlayList {
 
-    private static final String SPACE = " ";
+
 
     public static void main(String[] args) {
-        // klasa 1 - PlayList
-        PlayList playList = new PlayList();
-        List<Track> items = playList.getTracks();
-
-        // to chyba player? - PlayListController
-        present(items, System.out::println);
-
-
-        List<Track> toShuffle = new ArrayList<>(playList.getTracks());
-        shuffle(toShuffle);
-
-        System.out.println("\n### po shuffle ###\n");
-        present(toShuffle, MyPlayList::print);
-
-        System.out.println("\n### a tu oryginalne ###\n");
-        present(items, MyPlayList::print);
-
-    }
-
-    private static void print(Track track) {
-        System.out.println(track.getArtist() + SPACE + track.getTitle());
-    }
-
-    private static void shuffle(List<Track> items) {
-        Collections.sort(items, Comparator.nullsLast(Comparator.comparing(Track::getArtist)));
-    }
-
-    private static void present(List<Track> items, Consumer<Track> printer) {
-        for (Track track : items) {
-            printer.accept(track);
+        String selector = args.length == 0 ? "first" : args[0];
+        /*
+        String selector;
+        if (args.length == 0) {
+        selector = "first";
         }
-    }
+        else {
+        selector = args[0];
+        }
+         */
 
+        PlayListController controller = new PlayListController(new PlayList());
+
+        controller.presentCurrent(trackConsumerFactor(selector));
+
+        controller.shuffle();
+        System.out.println("\n### po shuffle ###\n");
+        controller.presentCurrent(trackConsumerFactor(selector));
+        System.out.println("\n### a tu oryginalne ###\n");
+        controller.presentOriginal(trackConsumerFactor(selector));
+
+    }
 }

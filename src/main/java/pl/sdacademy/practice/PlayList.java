@@ -40,4 +40,8 @@ public class PlayList {
     public List<Track> getTracks() {
         return Collections.unmodifiableList(tracks);
     }
+
+    public int getSize() {
+        return tracks.size();
+    }
 }

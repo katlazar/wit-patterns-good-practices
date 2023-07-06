@@ -18,14 +18,6 @@ public class MyPlayList {
         present(items, System.out::println);
 
 
-        Track thirdTrack = Track.builder()
-                .artist("Einaudi")
-                .title("Expecience")
-                .build();
-        playList.remove(thirdTrack);
-        System.out.println("\n ==== PO KASOWANIU ===== \n");
-        present(items, System.out::println);
-
 //        shuffle(items);
 //
 //        present(items, MyPlayList::print);

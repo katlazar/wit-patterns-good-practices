@@ -1,5 +1,6 @@
 package pl.sdacademy.practice;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -18,9 +19,14 @@ public class MyPlayList {
         present(items, System.out::println);
 
 
-//        shuffle(items);
-//
-//        present(items, MyPlayList::print);
+        List<Track> toShuffle = new ArrayList<>(playList.getTracks());
+        shuffle(toShuffle);
+
+        System.out.println("\n### po shuffle ###\n");
+        present(toShuffle, MyPlayList::print);
+
+        System.out.println("\n### a tu oryginalne ###\n");
+        present(items, MyPlayList::print);
 
     }
 

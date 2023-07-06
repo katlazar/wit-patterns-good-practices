@@ -28,16 +28,16 @@ public class PlayList {
     }
 
 
-    public void add(Track track) {
+    void add(Track track) {
         tracks.add(track);
     }
 
-    public void remove(Track track) {
+    void remove(Track track) {
         // aby zadzialalo musimy miec dobrze zaimplementowany kontrakt equals
         tracks.remove(track);
     }
 
-    public List<Track> getTracks() {
+    List<Track> getTracks() {
         return Collections.unmodifiableList(tracks);
     }
 
